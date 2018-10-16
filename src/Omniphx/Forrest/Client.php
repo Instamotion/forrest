@@ -187,14 +187,15 @@ abstract class Client
 
     private function handleRequest()
     {
-        $this->parameters['headers'] = $this->formatter->setHeaders();
+        $parameters = [];
+        $parameters['headers'] = $this->formatter->setHeaders();
 
         if (isset($this->options['body'])) {
-            $this->parameters['body'] = $this->formatter->setBody($this->options['body']);
+            $parameters['body'] = $this->formatter->setBody($this->options['body']);
         }
 
         try {
-            $response = $this->httpClient->request($this->options['method'], $this->url, $this->parameters);
+            $response = $this->httpClient->request($this->options['method'], $this->url, $parameters);
         } catch (RequestException $ex) {
             $this->assignExceptions($ex);
         }
