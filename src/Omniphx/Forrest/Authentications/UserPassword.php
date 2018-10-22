@@ -39,7 +39,7 @@ class UserPassword extends BaseAuthentication implements UserPasswordInterface
      * @param  Array $parameters
      * @return String
      */
-    private function getAuthToken($url)
+    protected function getAuthToken($url)
     {
         $parameters['form_params'] = [
             'grant_type'    => 'password',
